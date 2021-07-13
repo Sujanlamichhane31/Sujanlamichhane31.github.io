@@ -27,6 +27,8 @@
         Github
     </a>
     </p>
+    <h4>My Repositories</h4>
+    <p id="repo"></p>
 </div>
 
 <script>
@@ -46,6 +48,22 @@ document.getElementById('mainContainer').hidden = false
 document.getElementById('loading').hidden = true
 
     })
+
+
+    fetch("https://api.github.com/users/Sujanlamichhane31/repos")
+.then(response =>response.json())
+.then(function(data){
+console.log(data)
+let m = data.length;
+var n = parseInt(m);
+let repoName = "";
+for(i = 0;i < n; i++ )
+{
+repoName += " Repo " + i +" "+ data[i]['name'] +"<br>"+ "<br>";
+}
+document.getElementById('repo').innerHTML = repoName
+})
+
 </script>
 
 
